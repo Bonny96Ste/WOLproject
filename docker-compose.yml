@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  wol_sender:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: wol_sender
+    restart: unless-stopped
+    tty: true
+    volumes:
+      - ./send_wol.sh:/send_wol.sh
+    environment:
+      - TARGET_MAC_ADDRESS=00:11:22:33:44:55
+    ports:
+      - "5000:5000"
+    privileged: false
